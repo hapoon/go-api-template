@@ -3,8 +3,6 @@ package service
 import (
 	"encoding/json"
 	"hapoon/go-api-template/model"
-
-	"github.com/labstack/echo/v4"
 )
 
 type SampleService interface {
@@ -16,7 +14,7 @@ type SampleService interface {
 type sampleService struct {
 }
 
-func NewSampleService(e *echo.Echo) SampleService {
+func NewSampleService() SampleService {
 	return &sampleService{}
 }
 

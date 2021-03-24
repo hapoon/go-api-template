@@ -26,7 +26,7 @@ func hello(c echo.Context) error {
 
 func route(e *echo.Echo) {
 	// /sample
-	sample := service.NewSampleService(e)
+	sample := service.NewSampleService()
 	s := e.Group("/sample")
 	{
 		s.GET("/", func(c echo.Context) error {
