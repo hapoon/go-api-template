@@ -4,4 +4,6 @@ SERVER=main.go
 run:
 	go run ${SERVER}
 
-
+.PHONY: test
+test:
+	go test -cover ./...
