@@ -2,24 +2,24 @@ package repository
 
 import (
 	"encoding/json"
-	"hapoon/go-api-template/model"
+	"hapoon/go-api-template/entity"
 )
 
 type sampleRepository struct {
 }
 
 type SampleRepository interface {
-	List() (model.SampleModels, error)
-	GetById(id string) (model.SampleModel, error)
-	Create(data string) (*model.SampleModel, error)
+	List() (entity.SampleEntities, error)
+	GetById(id string) (entity.SampleEntity, error)
+	Create(data string) (*entity.SampleEntity, error)
 }
 
 func NewSampleRepository() SampleRepository {
 	return &sampleRepository{}
 }
 
-func (s sampleRepository) List() (model.SampleModels, error) {
-	sms := model.SampleModels{
+func (s sampleRepository) List() (entity.SampleEntities, error) {
+	sms := entity.SampleEntities{
 		{
 			Id:   "a0001",
 			Name: "Alice",
@@ -32,16 +32,16 @@ func (s sampleRepository) List() (model.SampleModels, error) {
 	return sms, nil
 }
 
-func (s sampleRepository) GetById(id string) (model.SampleModel, error) {
-	sm := model.SampleModel{
+func (s sampleRepository) GetById(id string) (entity.SampleEntity, error) {
+	sm := entity.SampleEntity{
 		Id:   id,
 		Name: "Charles",
 	}
 	return sm, nil
 }
 
-func (s sampleRepository) Create(data string) (*model.SampleModel, error) {
-	sm := new(model.SampleModel)
+func (s sampleRepository) Create(data string) (*entity.SampleEntity, error) {
+	sm := new(entity.SampleEntity)
 	if err := json.Unmarshal([]byte(data), sm); err != nil {
 		return nil, err
 	}
