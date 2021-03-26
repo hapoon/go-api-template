@@ -1,49 +1,47 @@
 package service
 
 import (
-	"encoding/json"
-	"hapoon/go-api-template/model"
+	"hapoon/go-api-template/repository"
+	"net/http"
+
+	"github.com/labstack/echo/v4"
 )
 
 type SampleService interface {
-	ListSamples() (model.SampleModels, error)
-	GetSample(id string) (model.SampleModel, error)
-	CreateSample(data string) (*model.SampleModel, error)
+	ListSamples(echo.Context) error
+	GetSample(echo.Context) error
+	CreateSample(echo.Context) error
 }
 
 type sampleService struct {
+	sample repository.SampleRepository
 }
 
-func NewSampleService() SampleService {
-	return &sampleService{}
-}
-
-func (s sampleService) ListSamples() (model.SampleModels, error) {
-	sms := model.SampleModels{
-		model.SampleModel{
-			Id:   "a0001",
-			Name: "Alice",
-		},
-		model.SampleModel{
-			Id:   "a0002",
-			Name: "Bob",
-		},
+func NewSampleService(sample repository.SampleRepository) SampleService {
+	return &sampleService{
+		sample: sample,
 	}
-	return sms, nil
 }
 
-func (s sampleService) GetSample(id string) (model.SampleModel, error) {
-	sm := model.SampleModel{
-		Id:   id,
-		Name: "Charles",
-	}
-	return sm, nil
+func (s sampleService) ListSamples(c echo.Context) error {
+	sample := repository.NewSampleRepository()
+	res, _ := sample.List()
+	return c.JSON(http.StatusOK, res)
 }
 
-func (s sampleService) CreateSample(data string) (*model.SampleModel, error) {
-	sm := new(model.SampleModel)
-	if err := json.Unmarshal([]byte(data), sm); err != nil {
-		return nil, err
+func (s sampleService) GetSample(c echo.Context) error {
+	id := c.Param("id")
+	res, _ := s.sample.GetById(id)
+	return c.JSON(http.StatusOK, res)
+}
+
+func (s sampleService) CreateSample(c echo.Context) error {
+	var body = struct {
+		Id   string `json:"id"`
+		Name string `json:"name"`
+	}{}
+	if err := c.Bind(&body); err != nil {
+		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
 	}
-	return sm, nil
+	return c.JSON(http.StatusCreated, body)
 }
