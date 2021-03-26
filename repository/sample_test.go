@@ -1,7 +1,7 @@
 package repository_test
 
 import (
-	"hapoon/go-api-template/model"
+	"hapoon/go-api-template/entity"
 	"hapoon/go-api-template/repository"
 	"testing"
 
@@ -12,11 +12,11 @@ func TestSampleRepositoryList(t *testing.T) {
 	// Test patterns
 	tests := map[string]struct {
 		HasError bool
-		Expect   model.SampleModels
+		Expect   entity.SampleEntities
 	}{
 		"No error": {
 			HasError: false,
-			Expect: model.SampleModels{
+			Expect: entity.SampleEntities{
 				{Id: "a0001", Name: "Alice"},
 				{Id: "a0002", Name: "Bob"},
 			},
@@ -38,12 +38,12 @@ func TestSampleRepositoryGetById(t *testing.T) {
 	tests := map[string]struct {
 		HasError bool
 		Id       string
-		Expect   model.SampleModel
+		Expect   entity.SampleEntity
 	}{
 		"No error": {
 			HasError: false,
 			Id:       "c0001",
-			Expect:   model.SampleModel{Id: "c0001", Name: "Charles"},
+			Expect:   entity.SampleEntity{Id: "c0001", Name: "Charles"},
 		},
 	}
 
@@ -63,12 +63,12 @@ func TestSampleRepositoryCreate(t *testing.T) {
 	tests := map[string]struct {
 		HasError bool
 		Data     string
-		Expect   *model.SampleModel
+		Expect   *entity.SampleEntity
 	}{
 		"No error": {
 			HasError: false,
 			Data:     `{"id": "d0001","name": "Donald"}`,
-			Expect: &model.SampleModel{
+			Expect: &entity.SampleEntity{
 				Id:   "d0001",
 				Name: "Donald",
 			},
@@ -76,7 +76,7 @@ func TestSampleRepositoryCreate(t *testing.T) {
 		"Json decode error": {
 			HasError: true,
 			Data:     "aaaa",
-			Expect:   &model.SampleModel{},
+			Expect:   &entity.SampleEntity{},
 		},
 	}
 
