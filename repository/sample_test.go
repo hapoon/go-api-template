@@ -1,14 +1,14 @@
-package service_test
+package repository_test
 
 import (
 	"hapoon/go-api-template/model"
-	"hapoon/go-api-template/service"
+	"hapoon/go-api-template/repository"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 )
 
-func TestSampleServiceListSamples(t *testing.T) {
+func TestSampleRepositoryList(t *testing.T) {
 	// Test patterns
 	tests := map[string]struct {
 		HasError bool
@@ -23,7 +23,7 @@ func TestSampleServiceListSamples(t *testing.T) {
 		},
 	}
 	for scenario, test := range tests {
-		actual, err := service.NewSampleService().ListSamples()
+		actual, err := repository.NewSampleRepository().List()
 		if test.HasError {
 			assert.Error(t, err, scenario)
 		} else {
@@ -33,7 +33,7 @@ func TestSampleServiceListSamples(t *testing.T) {
 	}
 }
 
-func TestSampleServiceGetSample(t *testing.T) {
+func TestSampleRepositoryGetById(t *testing.T) {
 	// Test patterns
 	tests := map[string]struct {
 		HasError bool
@@ -48,7 +48,7 @@ func TestSampleServiceGetSample(t *testing.T) {
 	}
 
 	for scenario, test := range tests {
-		actual, err := service.NewSampleService().GetSample(test.Id)
+		actual, err := repository.NewSampleRepository().GetById(test.Id)
 		if test.HasError {
 			assert.Error(t, err, scenario)
 		} else {
@@ -58,7 +58,7 @@ func TestSampleServiceGetSample(t *testing.T) {
 	}
 }
 
-func TestSampleServiceCreateSample(t *testing.T) {
+func TestSampleRepositoryCreate(t *testing.T) {
 	// Test patterns
 	tests := map[string]struct {
 		HasError bool
@@ -75,13 +75,13 @@ func TestSampleServiceCreateSample(t *testing.T) {
 		},
 		"Json decode error": {
 			HasError: true,
-			Data:     `aaaa`,
+			Data:     "aaaa",
 			Expect:   &model.SampleModel{},
 		},
 	}
 
 	for scenario, test := range tests {
-		actual, err := service.NewSampleService().CreateSample(test.Data)
+		actual, err := repository.NewSampleRepository().Create(test.Data)
 		if test.HasError {
 			assert.Error(t, err, scenario)
 		} else {
