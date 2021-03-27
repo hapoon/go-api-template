@@ -2,7 +2,8 @@ package repository
 
 import (
 	"encoding/json"
-	"hapoon/go-api-template/entity"
+
+	"github.com/hapoon/go-api-template/entity"
 )
 
 type sampleRepository struct {

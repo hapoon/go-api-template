@@ -1,8 +1,10 @@
 package service
 
 import (
-	"hapoon/go-api-template/repository"
+	"fmt"
 	"net/http"
+
+	"github.com/hapoon/go-api-template/repository"
 
 	"github.com/labstack/echo/v4"
 )
@@ -24,8 +26,14 @@ func NewSampleService(sample repository.SampleRepository) SampleService {
 }
 
 func (s sampleService) ListSamples(c echo.Context) error {
-	sample := repository.NewSampleRepository()
-	res, _ := sample.List()
+	res, err := s.sample.List()
+	if err != nil {
+		return echo.NewHTTPError(http.StatusInternalServerError, err.Error())
+	}
+	fmt.Printf("res: %+v\n", res)
+	if len(res) == 0 {
+		return echo.NewHTTPError(http.StatusNotFound, err.Error())
+	}
 	return c.JSON(http.StatusOK, res)
 }
 
