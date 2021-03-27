@@ -1,8 +1,8 @@
 package route
 
 import (
-	"hapoon/go-api-template/repository"
-	"hapoon/go-api-template/service"
+	"github.com/hapoon/go-api-template/repository"
+	"github.com/hapoon/go-api-template/service"
 
 	"github.com/labstack/echo/v4"
 )

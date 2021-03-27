@@ -1,9 +1,10 @@
 package repository_test
 
 import (
-	"hapoon/go-api-template/entity"
-	"hapoon/go-api-template/repository"
 	"testing"
+
+	"github.com/hapoon/go-api-template/entity"
+	"github.com/hapoon/go-api-template/repository"
 
 	"github.com/stretchr/testify/assert"
 )

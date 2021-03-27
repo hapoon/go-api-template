@@ -1,7 +1,7 @@
 package main
 
 import (
-	"hapoon/go-api-template/route"
+	"github.com/hapoon/go-api-template/route"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"

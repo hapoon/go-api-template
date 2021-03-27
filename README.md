@@ -1,6 +1,7 @@
 # go-api-template
 
 ![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/hapoon/go-api-template)
+![CircleCI](https://img.shields.io/circleci/build/github/hapoon/go-api-template/main)
 ![GitHub](https://img.shields.io/github/license/hapoon/go-api-template)
 
 API server template created by Go.
