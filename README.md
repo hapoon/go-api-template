@@ -10,6 +10,20 @@ API server template created by Go.
 
 ## Installation
 
+1. [Use this template](https://github.com/hapoon/go-api-template/generate)よりリポジトリを作成する。
+
+2. 必要なモジュールをダウンロード
+
+```
+% go mod download
+```
+
+3. [mockgen](https://github.com/golang/mock)をインストール
+
+```
+% go install github.com/golang/mock/mockgen@v1.5.0
+```
+
 ## Run locally
 
 ```
@@ -32,6 +46,12 @@ API server template created by Go.
 
 ```
 % make docker-run
+```
+
+## Generate mock
+
+```
+% make mockgen
 ```
 
 # License
