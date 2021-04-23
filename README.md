@@ -6,9 +6,42 @@
 
 API server template created by Go.
 
-# Guide
+## Description
 
-## Installation
+## Usage
+
+### Run locally
+
+```
+% make run
+```
+
+### Run unit test with coverage
+
+```
+% make test
+```
+
+### Build docker image
+
+```
+% make docker-build
+```
+
+### Run docker image
+
+```
+% make docker-run
+```
+
+### Generate mock
+
+```
+% make mockgen
+```
+
+
+## Install
 
 1. [Use this template](https://github.com/hapoon/go-api-template/generate)よりリポジトリを作成する。
 
@@ -24,36 +57,15 @@ API server template created by Go.
 % go install github.com/golang/mock/mockgen@v1.5.0
 ```
 
-## Run locally
+## Contribution
 
-```
-% make run
-```
+1. Fork it ( [https://github.com/hapoon/go-api-template/fork](https://github.com/hapoon/go-api-template/fork))
+2. Create your feature branch ( `git checkout -b my-new-feature` )
+3. Commit your changes ( `git commit -am 'Add some feature'` )
+4. Rebase your local changes against the main branch ( `git rebase -i` )
+5. Push to the branch ( `git push origin my-new-feature` )
+6. Create new Pull Request
 
-## Run unit test with coverage
-
-```
-% make test
-```
-
-## Build docker image
-
-```
-% make docker-build
-```
-
-## Run docker image
-
-```
-% make docker-run
-```
-
-## Generate mock
-
-```
-% make mockgen
-```
-
-# License
+## License
 
 [MIT](LICENSE)
